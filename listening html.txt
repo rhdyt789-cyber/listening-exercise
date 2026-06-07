@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening Exercise - Describing People</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f7fc;
+    padding:30px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.instructions{
+    background:#eef4ff;
+    padding:15px;
+    border-left:5px solid #4a90e2;
+    margin-bottom:20px;
+    border-radius:5px;
+}
+
+audio{
+    width:100%;
+    margin:20px 0;
+}
+
+.question{
+    margin-bottom:25px;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+}
+
+.question p{
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+label{
+    display:block;
+    margin:8px 0;
+}
+
+button{
+    background:#4a90e2;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+#result{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.correct{
+    color:green;
+}
+
+.incorrect{
+    color:red;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Listening Exercise</h1>
+
+<div class="instructions">
+    Listen to the audio carefully and answer the questions below.
+</div>
+
+<audio controls>
+    <source src="A1_describing_people.mp3" type="audio/mpeg">
+    Your browser does not support audio playback.
+</audio>
+
+<form id="quizForm">
+
+<div class="question">
+    <p>1. What is the listening mainly about?</p>
+
+    <label>
+        <input type="radio" name="q1" value="a">
+        Describing people
+    </label>
+
+    <label>
+        <input type="radio" name="q1" value="b">
+        Describing animals
+    </label>
+
+    <label>
+        <input type="radio" name="q1" value="c">
+        Describing places
+    </label>
+</div>
+
+<div class="question">
+    <p>2. What does the speaker describe?</p>
+
+    <label>
+        <input type="radio" name="q2" value="a">
+        Physical appearance
+    </label>
+
+    <label>
+        <input type="radio" name="q2" value="b">
+        Weather
+    </label>
+
+    <label>
+        <input type="radio" name="q2" value="c">
+        Transportation
+    </label>
+</div>
+
+<div class="question">
+    <p>3. Which detail is mentioned?</p>
+
+    <label>
+        <input type="radio" name="q3" value="a">
+        Hair
+    </label>
+
+    <label>
+        <input type="radio" name="q3" value="b">
+        Mountain
+    </label>
+
+    <label>
+        <input type="radio" name="q3" value="c">
+        River
+    </label>
+</div>
+
+<button type="button" onclick="checkAnswers()">
+Submit Answers
+</button>
+
+</form>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function checkAnswers(){
+
+    const answers = {
+        q1: "a",
+        q2: "a",
+        q3: "a"
+    };
+
+    let score = 0;
+
+    for(let question in answers){
+
+        let selected =
+        document.querySelector(
+        `input[name="${question}"]:checked`
+        );
+
+        if(selected &&
+           selected.value === answers[question]){
+            score++;
+        }
+    }
+
+    let percentage =
+    Math.round((score/3)*100);
+
+    let result =
+    document.getElementById("result");
+
+    result.innerHTML =
+    `Score: ${score}/3 (${percentage}%)`;
+
+    if(percentage >= 80){
+        result.className = "correct";
+    }else{
+        result.className = "incorrect";
+    }
+}
+
+</script>
+
+</body>
+</html>
